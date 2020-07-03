@@ -1,2 +1,11 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="container">
+  <%= form_tag search_tours_path, method: :get do %>
+    <%= text_field_tag :name, params[:name] %>
+    <%= select_tag :sort_by_created_at, options_for_select([['Decrease','ASC'],['Increase','DASC']])%>
+    <%= submit_tag 'Search' %>
+  <%end%>     
+  <div class="row">
+		<%= render @tours %>
+	</div>
+</div>
+

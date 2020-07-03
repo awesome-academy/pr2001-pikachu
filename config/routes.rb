@@ -12,4 +12,25 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    resources :categories, except: :show do
+      resources :tours
+    end
+
+    resources :tour_details, except: %i[index show]
+  end
+
+  namespace :export_csv do
+    resources :tours, only: :create
+  end
+
+  namespace :search do
+    resources :tours, only: :index
+  end
+
+  resources :categories, only: [] do
+    resources :tours, only: %i[index show]
+  end
+
+  root 'static_pages#home'
 end

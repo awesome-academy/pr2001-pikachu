@@ -12,5 +12,5 @@
 #
 class Like < ApplicationRecord
   belongs_to :user
-  belong_to :review
+  belongs_to :review
 end
