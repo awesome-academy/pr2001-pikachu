@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -8,5 +10,5 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-	has_many :tours
+  has_many :tours
 end

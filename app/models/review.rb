@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reviews
@@ -10,8 +12,8 @@
 #  updated_at :datetime         not null
 #
 class Review < ApplicationRecord
-	has_many :likes
-	has_many :comments
-	belongs_to :user
-	belongs_to :tour
+  has_many :likes
+  has_many :comments
+  belongs_to :user
+  belongs_to :tour
 end
