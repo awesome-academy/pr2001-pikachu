@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -10,6 +12,6 @@
 #  updated_at :datetime         not null
 #
 class Comment < ApplicationRecord
-	belongs_to :user 
-	belongs_to :review 
+  belongs_to :user
+  belongs_to :review
 end

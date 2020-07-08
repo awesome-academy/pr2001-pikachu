@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: likes
@@ -9,6 +11,6 @@
 #  updated_at :datetime         not null
 #
 class Like < ApplicationRecord
-	belongs_to :user
-	belong_to :review
+  belongs_to :user
+  belong_to :review
 end

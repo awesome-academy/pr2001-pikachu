@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tour_details
@@ -10,6 +12,6 @@
 #  updated_at     :datetime         not null
 #
 class TourDetail < ApplicationRecord
-	belongs_to :tour
-	has_many :booking_tours
+  belongs_to :tour
+  has_many :booking_tours
 end
