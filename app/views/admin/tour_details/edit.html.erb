@@ -1,0 +1,12 @@
+<%= form_for([:admin, @tour_detail]) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :tour_id, value: @tour.id %>
+
+	<%= f.label :departure_time %>
+	<%= f.date_field :departure_time, class: 'form-control' %>
+
+	<%= f.label :return_time %>
+	<%= f.date_field :return_time, class: 'form-control' %>
+
+	<%= f.submit "Confirm", class: "btn btn-primary" %>
+<% end %>

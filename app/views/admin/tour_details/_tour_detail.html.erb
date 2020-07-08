@@ -1,0 +1,7 @@
+<tr>
+	<td><%= tour_detail.departure_time %></td>
+	<td><%= tour_detail.return_time %></td>
+	<td><%= link_to 'Edit', edit_admin_tour_detail_path(tour_detail) %></td>
+	<td><%= link_to "Delete", admin_tour_detail_path(tour_detail), method: :delete,
+		data: { confirm: "You sure?" } %></td>
+</tr>

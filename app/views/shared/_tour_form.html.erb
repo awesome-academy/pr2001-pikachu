@@ -1,0 +1,20 @@
+<%= form_for([:admin, @category, @tour]) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name, class: 'form-control' %>
+
+	<%= f.label :description %>
+	<%= f.text_area :description, class: 'form-control' %>
+
+	<%= f.label :price %>
+	<%= f.text_field :price, class: 'form-control' %>
+
+	<%= f.label :coupon %>
+	<%= f.text_field :coupon, class: 'form-control' %>
+
+	<%= f.label :seats %>
+	<%= f.text_field :seats, class: 'form-control' %>
+
+	<%= f.submit "Confirm", class: "btn btn-primary" %>
+<% end %>  

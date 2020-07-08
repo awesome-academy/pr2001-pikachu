@@ -10,5 +10,6 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-  has_many :tours
+  has_many :tours, dependent: :destroy
+  validates :name, presence: true, length: { maximum: 100 }
 end

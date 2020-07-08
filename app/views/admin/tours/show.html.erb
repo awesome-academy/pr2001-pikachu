@@ -1,0 +1,17 @@
+<h1><%= @tour.name %></h1>
+<h3>Time Detail</h3>
+<div class="table-responsive">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Departure Time</th>
+			<th>Return Time</th>
+		</tr>
+	</thead>
+    <tbody>
+      <%= render @tour_details %>   	
+    </tbody>
+</table>
+</div>
+<%= link_to 'Add Time', new_admin_tour_detail_path(tour_id: @tour.id) %> | 
+<%= link_to 'Back', admin_category_tours_path(@category) %>
