@@ -16,5 +16,12 @@
 	<%= f.label :seats %>
 	<%= f.text_field :seats, class: 'form-control' %>
 
+	Add images
+	<% 5.times do |i| %>
+		<%= f.fields_for :images, @tour.images.new do |ff| %>
+			<%= ff.file_field :link %>
+		<% end %>
+	<% end %>
+
 	<%= f.submit "Confirm", class: "btn btn-primary" %>
 <% end %>  

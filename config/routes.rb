@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   root 'static_pages#home'
-  get '/home', to: 'static_pages#home'
   get '/help', to: 'static_pages#help'
   get 'sessions/new'
   get 'users/new'
@@ -18,6 +17,11 @@ Rails.application.routes.draw do
     end
 
     resources :tour_details, except: %i[index show]
+    resources :users, only: %i[index destroy]
+
+    resources :tours, only: [] do
+      resources :images, only: %i[new index create destroy]
+    end
   end
 
   namespace :export_csv do
@@ -31,6 +35,4 @@ Rails.application.routes.draw do
   resources :categories, only: [] do
     resources :tours, only: %i[index show]
   end
-
-  root 'static_pages#home'
 end
