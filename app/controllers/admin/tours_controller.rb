@@ -47,7 +47,8 @@ class Admin::ToursController < Admin::BaseController
   private
 
   def tour_params
-    params.require(:tour).permit(:name, :description, :price, :coupon, :seats)
+    params.require(:tour).permit(:name, :description, :price, :coupon,
+                                 :seats, images_attributes: %i[link id])
   end
 
   def set_category

@@ -12,4 +12,6 @@
 #
 class Image < ApplicationRecord
   belongs_to :tour
+  mount_uploader :link, ImageUploader
+  validates :link, presence: true
 end

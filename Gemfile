@@ -10,8 +10,12 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
+gem 'bootstrap', '~> 4.5.0'
 gem 'bootstrap-sass', '3.4.1'
+gem 'carrierwave'
+gem 'jquery-rails'
 gem 'puma', '~> 4.1'
+gem 'sassc', '~> 2.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

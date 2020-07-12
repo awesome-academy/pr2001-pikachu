@@ -16,13 +16,14 @@
 #
 class Tour < ApplicationRecord
   belongs_to :category
-  has_many :reviews
-  has_many :ratings
-  has_many :images
+  has_many :reviews, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :images, dependent: :destroy
   has_many :tour_details, dependent: :destroy
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true
   validates :price, :coupon, :seats, presence: true, numericality: true
+  accepts_nested_attributes_for :images
 
   scope :search_name, lambda { |name|
     where("name like '%#{name}%'")
