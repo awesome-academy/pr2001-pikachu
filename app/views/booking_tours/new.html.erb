@@ -1,0 +1,16 @@
+<% provide(:title, 'bookingtour') %>
+
+<h1>Booking Tour</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for([@tour,@booking_tour]) do |f| %>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+
+      <%= f.select(:tour_detail_id, @tour.tour_details.map{|x| ["#{x.departure_time} ~ #{x.return_time}", x.id]}) %>
+
+      <%= f.submit "Booking", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

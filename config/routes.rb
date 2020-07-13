@@ -35,4 +35,8 @@ Rails.application.routes.draw do
   resources :categories, only: [] do
     resources :tours, only: %i[index show]
   end
+
+  resources :tours, only: [] do
+    resources :booking_tours, only: %i[new create]
+  end
 end

@@ -15,4 +15,6 @@
 class BookingTour < ApplicationRecord
   belongs_to :tour_detail
   belongs_to :user
+
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 end
