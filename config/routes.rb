@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
 
   resources :tours, only: [] do
-    resources :booking_tours, only: %i[new create]
+    resources :booking_tours
   end
 end

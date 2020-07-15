@@ -1,0 +1,8 @@
+<%= form_for([tour, booking_tour], html: {class: "form-inline"}) do |f|%>
+<div>Quantity:
+	<%= f.text_field :quantity, class: 'form-control' %>
+	<%= f.hidden_field :tour_detail_id, value: tour_detail.id %>      
+	<%= hidden_field_tag :previous_url, request.url %>
+	<%= f.submit "Booking", class: "btn btn-primary" %>
+</div>
+<%end%>

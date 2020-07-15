@@ -1,11 +1,11 @@
 <div class="col-sm-4">
-  <div class="panel panel-info class">
-    <div class="panel-heading"><%= tour.name %></div>
-    <div class="panel-body"><img src='#' class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="panel-footer">
-      <div> Price: <%= tour.price %>$</div>
-      <div>Coupon: <%= tour.coupon %>%</div>
+	<div class="card", style="height:400px">
+    <%= image_tag(tour.images.sample&.link_url.to_s, alt: 'hi', height:'250',class:"img-thumbnail") %>
+    <div class="card-body">
+      <h4 class="card-title"><%= link_to "#{tour.name}", category_tour_path(tour.category,tour) %></h4>
+      <p class="card-text">Price: <%= tour.price %>$</p>
+      <p class="card-text">Coupon: <%= tour.coupon %>%</p>
+      <%= link_to "See More", category_tour_path(tour.category,tour), class:'btn btn-success'%>
     </div>
   </div>
 </div>

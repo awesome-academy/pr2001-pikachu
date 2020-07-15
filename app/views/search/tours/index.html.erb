@@ -1,0 +1,8 @@
+<% if @tours.count > 1%>
+	<h3><em>We found "<%=@tours.count%>" tours for your looking</em></h3>
+<%else%>
+	<h3><em>We found "<%=@tours.count%>" tour for your looking</em></h3>
+<%end%>
+<div class="row">
+	<%= render @tours %>
+</div>

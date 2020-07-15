@@ -1,0 +1,6 @@
+<h4>Information about your booking</h4>
+<h2>Your name: <%= @current_user.name%></h2>
+<h2>Your email: <%= @current_user.email%></h2>
+<h2>Tour: <%= @tour.name%></h2>
+<h2>Departure and Return time: <%= @booking_tour.tour_detail.departure_time%> - <%= @booking_tour.tour_detail.departure_time%></h2>
+<h2>Bill Total: <%= @booking_tour.price_total%></h2>
