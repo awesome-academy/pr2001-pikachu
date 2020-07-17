@@ -39,8 +39,23 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def store_location
+    if params[:previous_url].present?
+      session[:forwarding_url] = params[:previous_url]
+    else
+      session[:forwarding_url] = request.original_url if request.get?
+    end
+  end
+
+  # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
   def logged_in_user
     unless logged_in?
+      store_location
       flash[:danger] = 'Please log in.'
       redirect_to login_url
     end

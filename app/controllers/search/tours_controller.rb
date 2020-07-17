@@ -7,6 +7,5 @@ class Search::ToursController < ApplicationController
              else
                Tour.none
              end
-    render 'static_pages/home'
   end
 end

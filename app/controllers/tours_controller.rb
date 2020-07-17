@@ -10,5 +10,6 @@ class ToursController < ApplicationController
     @tour = Tour.find(params[:id])
     @images = @tour.images
     @tour_details = @tour.tour_details
+    @booking_tours = current_user.booking_tours if current_user
   end
 end
