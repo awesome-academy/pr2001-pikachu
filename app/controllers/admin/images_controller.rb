@@ -15,7 +15,7 @@ class Admin::ImagesController < Admin::BaseController
         flash[:success] = 'Your image is uploaded!'
         redirect_to admin_tour_images_path(@tour)
       else
-      	@images = @tour.images
+        @images = @tour.images
         render 'index'
       end
     else
@@ -34,6 +34,7 @@ class Admin::ImagesController < Admin::BaseController
   end
 
   private
+
   def set_tour
     @tour = Tour.find(params[:tour_id])
   end

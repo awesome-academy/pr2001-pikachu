@@ -40,9 +40,9 @@ module SessionsHelper
   end
 
   def store_location
-  	if params[:previous_url].present?
-  		session[:forwarding_url] = params[:previous_url]
-  	else
+    if params[:previous_url].present?
+      session[:forwarding_url] = params[:previous_url]
+    else
       session[:forwarding_url] = request.original_url if request.get?
     end
   end
