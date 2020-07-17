@@ -1,6 +1,6 @@
 <div class="col-sm-4">
-	<div class="card", style="height:400px">
-    <%= image_tag(tour.images.sample&.link_url.to_s, alt: 'hi', height:'250',class:"img-thumbnail") %>
+	<div class="card">
+    <%= image_tag(tour.images.sample&.link_url.to_s, alt: 'hi', class:"img-thumbnail") %>
     <div class="card-body">
       <h4 class="card-title"><%= link_to "#{tour.name}", category_tour_path(tour.category,tour) %></h4>
       <p class="card-text">Price: <%= tour.price %>$</p>

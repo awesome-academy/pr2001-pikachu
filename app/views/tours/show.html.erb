@@ -37,16 +37,15 @@
 	</thead>
 	<body>
 		<% @tour_details.each_with_index do |tour_detail,i| %>
-			<% c = tour_detail.booking_tours&.map{|x| x.quantity}%>
 			<tr>
 				<td><%=i+1%></td> 
 				<td><%= tour_detail.departure_time %></td>
 				<td><%= tour_detail.return_time %></td>
-				<td><%= @tour.seats - c&.reduce{|sum,x| sum+x}.to_i%></td>
+				<td><%= @tour.seats - tour_detail.booking_tours&.sum{|x| x.quantity} %></td>
 				<% if current_user&&current_user.booking_tours.pluck(:tour_detail_id).include?(tour_detail.id)%>
-				<td><%= render 'users/cancel_form', tour: @tour, booking_tour: @booking_tour%></td>
+					<td><%= link_to "See your booking", tour_booking_tour_path(@tour,current_user.booking_tours.select{|x| x if x.tour_detail_id == tour_detail.id}), class: "btn btn-success" %></td>
 				<%else%>
-				<td><%= render 'users/booking_form', tour: @tour, booking_tour: @booking_tour, tour_detail: tour_detail %></td>
+					<td><%= link_to "Booking", new_tour_booking_tour_path(@tour, tour_detail_id: tour_detail.id), class: "btn btn-primary"%></td>
 				<%end%>
 			</tr>
 		<% end %>

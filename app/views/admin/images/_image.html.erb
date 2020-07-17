@@ -1,1 +1,10 @@
-<%= image_tag(image.link_url.to_s, width: "500", height: "300") %>
+<div class="col-sm-4">
+<div class="card">
+	<%= image_tag(image.link_url.to_s, width: "400", height: "300", class: "card-img-top") %>
+  <div class="card-body">
+  	<%= link_to "Delete", admin_tour_image_path(image.tour, image), class: "btn btn-primary",
+  					 method: :delete%>
+  </div>
+</div>
+</div>
+

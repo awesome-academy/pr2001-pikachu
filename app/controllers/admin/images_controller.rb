@@ -3,12 +3,9 @@
 class Admin::ImagesController < Admin::BaseController
   before_action :set_tour
 
-  def new
-    @image = Image.new
-  end
-
   def index
     @images = @tour.images
+    @image = Image.new
   end
 
   def create
@@ -18,12 +15,14 @@ class Admin::ImagesController < Admin::BaseController
         flash[:success] = 'Your image is uploaded!'
         redirect_to admin_tour_images_path(@tour)
       else
-        render 'new'
+      	@images = @tour.images
+        render 'index'
       end
     else
       flash.now[:danger] = 'You forgot to choose an image file!'
       @image = Image.new
-      render 'new'
+      @images = @tour.images
+      render 'index'
     end
   end
 
@@ -35,7 +34,6 @@ class Admin::ImagesController < Admin::BaseController
   end
 
   private
-
   def set_tour
     @tour = Tour.find(params[:tour_id])
   end
