@@ -9,6 +9,8 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     @images = @tour.images
+    @rating = Rating.new
+    @ratings = Rating.all
     @tour_details = @tour.tour_details
     @booking_tours = current_user.booking_tours if current_user
   end

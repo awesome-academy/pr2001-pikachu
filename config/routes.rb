@@ -39,4 +39,7 @@ Rails.application.routes.draw do
   resources :tours, only: [] do
     resources :booking_tours
   end
+	resources :tours, only: [] do
+		resources :ratings, only: [:create]
+	end
 end
