@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [] do
-    resources :tours, only: %i[index show]
+    resources :tours, only: %i[index show] 
   end
 
   resources :tours, only: [] do
@@ -42,4 +42,9 @@ Rails.application.routes.draw do
   resources :tours, only: [] do
     resources :ratings, only: [:create]
   end
+
+  resources :tours do
+  resources :reviews, only: %i[create destroy]
+  end
+
 end
