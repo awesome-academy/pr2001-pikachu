@@ -1,7 +1,9 @@
-<%= form_for([@tour,@rating]) do |f|%>
+<div id="form_rating">
+<%= form_for [@tour,@rating], remote: true do |f|%>
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.hidden_field :tour_id, value: @tour.id %>
 	<%= f.label :rate %>
 	<%= f.number_field :rate, min: '1', max: '10' %>
 	<%= f.submit "Send", class: "btn btn-success"%>
 <%end%>
+</div>

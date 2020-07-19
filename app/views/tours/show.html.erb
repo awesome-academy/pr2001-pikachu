@@ -23,7 +23,7 @@
 <div><strong>Description:</strong> <%= @tour.description %></div>
 <div><strong>Price($):</strong> <%= @tour.price %></div>
 <div><strong>Coupon(%):</strong> <%= @tour.coupon %></div>
-<div><strong>Rate Average:</strong>
+<div id="rate_average"><strong>Rate Average:</strong>
 	<% if @tour.ratings.count > 0%>
 		<%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %>
 	<%else%>
@@ -31,13 +31,15 @@
 	<%end%>
 </div>
 
-<div><strong>Your Rating:</strong>
+<div>
 	<% if current_user&&current_user.ratings.pluck(:tour_id).include?(@tour.id) %>
 		<% c = current_user.ratings.select{|x| x if x.tour_id == @tour.id} %>
-		<%= c[0].rate %>
+		<div><strong>Your Rating: <%= c[0].rate %></strong></div>
 	<% elsif current_user %>
 		<%= render 'ratings/rating_form'%>
-	<%end%>
+	<% else %>
+		<div><strong>Your Rating: <%= link_to "Please login to rating this tour!", login_path %></strong></div>
+	<% end %>
 </div>
 
 <div><strong>You will have a lot of choices about departure time - return time:</strong></div>

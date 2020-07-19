@@ -1,7 +1,7 @@
-<li>
+<li id="category_<%= category.id %>">
 <%= link_to category.name, admin_category_tours_url(category) %>
 <%= link_to 'Create a tour', new_admin_category_tour_path(category) %> |
 <%= link_to 'Edit', edit_admin_category_path(category) %> | 
 <%= link_to "Delete", admin_category_path(category), method: :delete,
-		data: { confirm: "You sure?" } %>
+		data: { confirm: "You sure?", remote: true} %>
 </li>

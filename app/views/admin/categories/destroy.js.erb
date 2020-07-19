@@ -1,0 +1,2 @@
+$("#category_<%= @category.id %>").remove()
+$("#category_messages").prepend("<%= j(render("admin/images/success", a: "Category Deleted!"))%>");

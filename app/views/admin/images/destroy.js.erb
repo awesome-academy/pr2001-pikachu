@@ -1,0 +1,2 @@
+$("#image_<%= @image.id%>").remove();
+$('.images').prepend('<%= escape_javascript(render('admin/images/success',a: "Your Image Deleted!")) %>');
