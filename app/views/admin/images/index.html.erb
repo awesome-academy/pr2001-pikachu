@@ -1,12 +1,14 @@
-<%= form_for ([:admin, @tour, @image]) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-    Click =>
-    <%= f.file_field :link %>
-  </div>
-  <%= f.submit "Upload", class: "btn btn-success" %>
-<% end %>
+<div class="image_messages">
+  <%= form_for [:admin, @tour, @image], remote: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      Click =>
+      <%= f.file_field :link %>
+    </div>
+    <%= f.submit "Upload", class: "btn btn-success" %>
+  <% end %>
 
-<div class="row">
-	<%= render @images %>
+  <div class="row">
+    <%= render @images %>
+  </div>
 </div>

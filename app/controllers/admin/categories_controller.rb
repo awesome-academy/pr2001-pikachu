@@ -9,15 +9,27 @@ class Admin::CategoriesController < Admin::BaseController
 
   def index
     @categories = Category.all
+    @category = Category.new
   end
 
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = 'Category created!'
-      redirect_to admin_categories_url
+      respond_to do |format|
+        format.html do
+        	flash[:success] = 'A category is created!'
+        	redirect_to admin_categories_url
+        end
+        format.js
+      end
     else
-      render 'new'
+      respond_to do |format|
+        format.html do
+        	flash[:danger] = 'Your creating is failed!'
+        	redirect_to admin_categories_url
+        end
+        format.js
+      end
     end
   end
 
@@ -25,8 +37,8 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if @category.update(category_params)
-      flash[:success] = 'Category updated!'
       redirect_to admin_categories_path
+      redirect_to admin_categories_url
     else
       render 'edit'
     end
@@ -34,8 +46,13 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     @category.destroy
-    flash[:success] = 'Category deleted!'
-    redirect_to admin_categories_url
+    respond_to do |format|
+      format.html do
+      	flash[:success] = 'A category is deleted!'
+      	redirect_to admin_categories_url
+      end
+      format.js
+    end
   end
 
   private

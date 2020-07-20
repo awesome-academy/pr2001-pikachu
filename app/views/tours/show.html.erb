@@ -1,16 +1,16 @@
 <h2><%= @tour.name %></h2>
-
+ 
 <div id="demo" class="carousel slide" data-ride="carousel">
-	<!-- Indicators -->
+  <!-- Indicators -->
   <ul class="carousel-indicators">
-  	<% @images.count.times do |n| %>
+    <% @images.count.times do |n| %>
     <li data-target="#demo" data-slide-to="<%=n+1%>" class="<%= n == 0 ? 'active' : '' %>"></li>
     <%end%>
   </ul>
-	<!-- The slideshow -->
+  <!-- The slideshow -->
   <div class="carousel-inner">
-		<%= render @images, tour: @tour %>
-	</div>
+    <%= render @images, tour: @tour %>
+  </div>
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -18,54 +18,55 @@
   <a class="carousel-control-next" href="#demo" data-slide="next">
     <span class="carousel-control-next-icon"></span>
   </a>
-
 </div>
+
 <div><strong>Description:</strong> <%= @tour.description %></div>
 <div><strong>Price($):</strong> <%= @tour.price %></div>
 <div><strong>Coupon(%):</strong> <%= @tour.coupon %></div>
-<div><strong>Rate Average:</strong>
-	<% if @tour.ratings.count > 0%>
-		<%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %>
-	<%else%>
-		Have no rating
-	<%end%>
+<div id="rate_average"><strong>Rate Average:</strong>
+  <% if @tour.ratings.count > 0%>
+    <%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %>
+  <%else%>
+    Have no rating
+  <%end%>
 </div>
 
-<div><strong>Your Rating:</strong>
-	<% if current_user&&current_user.ratings.pluck(:tour_id).include?(@tour.id) %>
-		<% c = current_user.ratings.select{|x| x if x.tour_id == @tour.id} %>
-		<%= c[0].rate %>
-	<% elsif current_user %>
-		<%= render 'ratings/rating_form'%>
-	<%end%>
+<div>
+  <% if current_user&&current_user.ratings.pluck(:tour_id).include?(@tour.id) %>
+    <% c = current_user.ratings.select{|x| x if x.tour_id == @tour.id} %>
+    <div><strong>Your Rating: <%= c[0].rate %></strong></div>
+  <% elsif current_user %>
+    <%= render 'ratings/rating_form'%>
+  <% else %>
+    <div><strong>Your Rating: <%= link_to "Please login to rating this tour!", login_path(previous_url: request.url) %></strong></div>
+  <% end %>
 </div>
 
 <div><strong>You will have a lot of choices about departure time - return time:</strong></div>
 
 <table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>STT</th>
-			<th>Departure Time</th>
-			<th>Return Time</th>
-			<th>Available Seat(s)</th>
-			<th>Your choice</th>
-		</tr>
-	</thead>
-	<body>
-		<% @tour_details.each_with_index do |tour_detail,i| %>
-			<tr>
-				<td><%=i+1%></td> 
-				<td><%= tour_detail.departure_time %></td>
-				<td><%= tour_detail.return_time %></td>
-				<td><%= @tour.seats - tour_detail.booking_tours&.sum{|x| x.quantity} %></td>
-				<% if current_user&&current_user.booking_tours.pluck(:tour_detail_id).include?(tour_detail.id)%>
-					<td><%= link_to "See your booking", tour_booking_tour_path(@tour,current_user.booking_tours.select{|x| x if x.tour_detail_id == tour_detail.id}), class: "btn btn-success" %></td>
-				<%else%>
-					<td><%= link_to "Booking", new_tour_booking_tour_path(@tour, tour_detail_id: tour_detail.id), class: "btn btn-primary"%></td>
-				<%end%>
-			</tr>
-		<% end %>
-	</body>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Departure Time</th>
+      <th>Return Time</th>
+      <th>Available Seat(s)</th>
+      <th>Your choice</th>
+    </tr>
+  </thead>
+  <body>
+    <% @tour_details.each_with_index do |tour_detail,i| %>
+      <tr>
+        <td><%=i+1%></td> 
+        <td><%= tour_detail.departure_time %></td>
+        <td><%= tour_detail.return_time %></td>
+        <td><%= @tour.seats - tour_detail.booking_tours&.sum{|x| x.quantity} %></td>
+        <% if current_user&&current_user.booking_tours.pluck(:tour_detail_id).include?(tour_detail.id)%>
+          <td><%= link_to "See your booking", tour_booking_tour_path(@tour,current_user.booking_tours.select{|x| x if x.tour_detail_id == tour_detail.id}), class: "btn btn-success" %></td>
+        <%else%>
+          <td><%= link_to "Booking", new_tour_booking_tour_path(@tour, tour_detail_id: tour_detail.id), class: "btn btn-primary"%></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </body>
 </table>
-

@@ -12,29 +12,49 @@ class Admin::ImagesController < Admin::BaseController
     if params[:image]
       @image = @tour.images.build(link: params[:image][:link])
       if @image.save
-        flash[:success] = 'Your image is uploaded!'
-        redirect_to admin_tour_images_path(@tour)
+        respond_to do |format|
+          format.html do
+          	flash[:success] = 'Your image is upload!'
+          	redirect_to admin_tour_images_path(@tour)
+          end
+          format.js
+        end
       else
-        @images = @tour.images
-        render 'index'
+        respond_to do |format|
+          format.html do
+          	flash[:danger] = 'Upload is failed!'
+          	redirect_to admin_tour_images_path(@tour)
+          end
+          format.js
+        end
       end
     else
-      flash.now[:danger] = 'You forgot to choose an image file!'
-      @image = Image.new
-      @images = @tour.images
-      render 'index'
+      @image = @tour.images.build
+      @image.valid?
+      respond_to do |format|
+        format.html do
+        	flash[:danger] = 'Upload is failed!'
+        	redirect_to admin_tour_images_path(@tour)
+        end
+        format.js
+      end
     end
   end
 
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
-    flash[:success] = 'Your image is deleted!'
-    redirect_to admin_tour_images_path(@tour)
+    respond_to do |format|
+      format.html do
+      	flash[:success] = 'Your image is deleted!' 
+      	redirect_to admin_tour_images_path(@tour)
+      end 
+      format.js
+    end
   end
 
   private
-
+  
   def set_tour
     @tour = Tour.find(params[:tour_id])
   end

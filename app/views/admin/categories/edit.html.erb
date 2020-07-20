@@ -1,7 +1,7 @@
 <h2>Edit Category</h2>
 <%= form_for([:admin, @category]) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
-<%= f.label :name %>
-<%= f.text_field :name, class: 'form-control' %>
-<%= f.submit "Save changes", class: "btn btn-primary" %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
 <% end %>

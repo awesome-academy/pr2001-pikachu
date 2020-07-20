@@ -2,18 +2,18 @@
 <%= button_to 'Export CSV', export_csv_tours_path %>
 <div class="table-responsive">
 <table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>STT</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price($)</th>
-			<th>Coupon(%)</th>
-			<th>Seats</th>
-		</tr>
-	</thead>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price($)</th>
+      <th>Coupon(%)</th>
+      <th>Seats</th>
+    </tr>
+  </thead>
     <tbody>
-      <%= render @tours %>   	
+      <%= render @tours %>    
     </tbody>
 </table>
 </div>

@@ -1,29 +1,29 @@
 <h2>Information About Your Booking</h2>
 <table>
-	<tr>
-		<th>Your Name:</th>
-		<td><%= current_user.name%></td>
-	</tr>
-	<tr>
-		<th>Your Email:</th>
-		<td><%= current_user.email%></td>
-	</tr>
-	<tr>
-		<th>Tour Name:</th>
-		<td><%= @tour.name%></td>
-	</tr>
-	<tr>
-		<th>Time:</th>
-		<td>From <%= @booking_tour.tour_detail.departure_time%> to <%= @booking_tour.tour_detail.return_time%></td>
-	</tr>
-	<tr>
-		<th>Bill Total($):</th>
-		<td><%= @booking_tour.price_total%></td>
-	</tr>
-	<tr>
-		<th>Booking Time:</th>
-		<td><%= @booking_tour.created_at %></td>
-	</tr>
+  <tr>
+    <th>Your Name:</th>
+    <td><%= current_user.name%></td>
+  </tr>
+  <tr>
+    <th>Your Email:</th>
+    <td><%= current_user.email%></td>
+  </tr>
+  <tr>
+    <th>Tour Name:</th>
+    <td><%= @tour.name%></td>
+  </tr>
+  <tr>
+    <th>Time:</th>
+    <td>From <%= @booking_tour.tour_detail.departure_time%> to <%= @booking_tour.tour_detail.return_time%></td>
+  </tr>
+  <tr>
+    <th>Bill Total($):</th>
+    <td><%= @booking_tour.price_total%></td>
+  </tr>
+  <tr>
+    <th>Booking Time:</th>
+    <td><%= @booking_tour.created_at %></td>
+  </tr>
 </table>
 <%= link_to "Cancel", tour_booking_tour_path(@tour, @booking_tour), method: :delete,
-		 data: { confirm: "You sure?" }, class: "btn btn-danger"%>
+     data: { confirm: "You sure?" }, class: "btn btn-danger"%>

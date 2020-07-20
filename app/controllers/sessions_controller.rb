@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  before_action :save_url, only: :new
+
   def new; end
 
   def create
@@ -18,5 +20,13 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
+  end
+
+  private
+
+  def save_url
+    if params[:previous_url].present?
+      session[:forwarding_url] = params[:previous_url]
+    end
   end
 end
