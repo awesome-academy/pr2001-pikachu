@@ -3,6 +3,7 @@
   <span class="tour"><%= link_to review.tour.name, review.tour %></span>
   <span class="content">
     <%= review.content %>
+    <%= image_tag(review.picture_url, alt: 'hi', class:"img-thumbnail") if review.picture_url %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
