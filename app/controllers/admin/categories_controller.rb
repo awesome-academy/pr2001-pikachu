@@ -16,12 +16,18 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new(category_params)
     if @category.save
       respond_to do |format|
-        format.html { redirect_to admin_categories_url }
+        format.html do
+        	flash[:success] = 'A category is created!'
+        	redirect_to admin_categories_url
+        end
         format.js
       end
     else
       respond_to do |format|
-        format.html { redirect_to admin_categories_url }
+        format.html do
+        	flash[:danger] = 'Your creating is failed!'
+        	redirect_to admin_categories_url
+        end
         format.js
       end
     end
@@ -41,7 +47,10 @@ class Admin::CategoriesController < Admin::BaseController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to admin_categories_url }
+      format.html do
+      	flash[:success] = 'A category is deleted!'
+      	redirect_to admin_categories_url
+      end
       format.js
     end
   end

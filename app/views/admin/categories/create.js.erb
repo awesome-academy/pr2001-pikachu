@@ -1,6 +1,6 @@
 <% if @category.errors.blank? %>
-	$('#categories').append('<%= j(render('admin/categories/category', category: @category))%>');
-	$('#category_messages').prepend('<%= j(render('admin/images/success',a: "A Category Created!")) %>');
+  $('#categories').append('<%= j(render('admin/categories/category', category: @category))%>');
+  $('#category_messages').prepend('<%= j(render('admin/images/success',attached_message: "A Category Created!")) %>');
 <% else %>
-	$('#category_messages').prepend('<%= j(render('shared/error_messages', object: @category)) %>');
-<%end%>
+  $('#category_messages').prepend('<%= j(render('shared/error_messages', object: @category)) %>');
+<% end %>

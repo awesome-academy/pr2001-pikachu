@@ -1,6 +1,8 @@
 <% if @rating.errors.blank? %>
-	$('#form_rating').html('<div><strong>Your Rating: <%= @rating.rate %></strong></div>');
-	$('#rate_average').html('<div><strong>Rate Average: <%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %></strong></div>');
+  $('#form_rating').html('<div><strong>Your Rating: <%= @rating.rate %></strong></div>');
+  $('#rate_average').html('<div><strong>Rate Average: <%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %></strong></div>');
+  $('#rate_average').append('<div><em>Thank you for your rating!</em></div>')
 <% else %>
-	$('#form_rating').prepend('<%= j(render('shared/error_messages', object: @rating)) %>');
+  $('#form_rating').prepend('<%= j(render('shared/error_messages', object: @rating)) %>');
+  $('#form_rating').prepend('<div><em>Please rating again!</em></div>')
 <% end %>

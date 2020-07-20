@@ -1,10 +1,10 @@
-<% if params[:image]&&@image.errors.blank? %>
-	$(".row").append('<%= j(render('admin/images/image', image: @image)) %>');
-	$('.image_messages').prepend('<%= j(render('admin/images/success',a: "Your Image Uploaded!")) %>');
+<% if params[:image] && @image.errors.blank? %>
+  $(".row").append("<%= j(render('admin/images/image', image: @image)) %>");
+  $('.image_messages').prepend("<%= j(render('admin/images/success', attached_message: "Your Image Uploaded!")) %>");
 <% elsif params[:image] %>
-	$('.image_messages').prepend('<%= j(render('shared/error_messages', object: @image)) %>');
+  $('.image_messages').prepend("<%= j(render('shared/error_messages', object: @image)) %>");
 <% else %>
-	$('.image_messages').prepend('<%= j(render('shared/error_messages', object: @image)) %>');
-	$('.image_messages').prepend('<strong>You fogot choose an image!</strong>');
+  $('.image_messages').prepend("<%= j(render('shared/error_messages', object: @image)) %>");
+  $('.image_messages').prepend("<strong>You fogot choose an image!</strong>");
 <% end %>
  

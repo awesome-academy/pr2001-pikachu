@@ -1,9 +1,9 @@
 <div class="col-sm-4", id="image_<%= image.id%>">
-	<div class="card">
-		<%= image_tag(image.link_url.to_s, width: "400", height: "300", class: "card-img-top") %>
-  	<div class="card-body">
-  		<%= link_to "Delete", admin_tour_image_path(image.tour, image), class: "btn btn-primary",
-  					 method: :delete, data: { confirm: "You sure?" }, :remote => true %>
-  	</div>
-	</div>
+  <div class="card">
+    <%= image_tag(image.link_url.to_s, width: "400", height: "300", class: "card-img-top") %>
+    <div class="card-body">
+      <%= link_to "Delete", admin_tour_image_path(image.tour, image), class: "btn btn-primary",
+             method: :delete, data: { confirm: "You sure?" }, :remote => true %>
+    </div>
+  </div>
 </div>

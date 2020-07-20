@@ -1,5 +1,5 @@
 <div class="col-sm-4">
-	<div class="card">
+  <div class="card">
     <%= image_tag(tour.images.sample&.link_url.to_s, alt: 'hi', class:"img-thumbnail") %>
     <div class="card-body">
       <h4 class="card-title"><%= link_to "#{tour.name}", category_tour_path(tour.category,tour) %></h4>
