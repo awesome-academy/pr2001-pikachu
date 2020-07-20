@@ -1,7 +1,9 @@
 <li id="review-<%= review.id %>">
   <%= link_to review.tour.images.first, review.tour if review.tour.images.first %>
   <span class="tour"><%= link_to review.tour.name, review.tour %></span>
-  <span class="content"><%= review.content %></span>
+  <span class="content">
+    <%= review.content %>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
     <% if current_user?(review.user) %>
