@@ -70,3 +70,21 @@
     <% end %>
   </body>
 </table>
+  <div class="col-md-8">
+    <% if @tour.reviews.any? %>
+      <h3>Reviews (<%= @reviews.count %>)</h3>
+    <ol class="reviews">
+      <%= render @reviews %>
+    </ol>
+    <%= will_paginate @reviews %>
+    <% end %>
+  </div>
+
+  <% if logged_in? %>
+      <section class="review_form">
+        <%= render 'shared/review_form', tour: @tour, review: @review %>
+      </section>
+    </aside>
+  <% else %>
+  <% end %>
+</div>

@@ -60,4 +60,8 @@ module SessionsHelper
       redirect_to login_url
     end
   end
+
+  def current_user?(user)
+    user && user == current_user
+  end
 end

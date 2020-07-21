@@ -16,4 +16,8 @@ class Review < ApplicationRecord
   has_many :comments
   belongs_to :user
   belongs_to :tour
+  mount_uploader :picture, ImageUploader
+  validates :user_id, presence: true
+  validates  :tour_id, presence: true
+  validates :content, presence: true, length: { maximum: 500 }
 end
