@@ -25,8 +25,6 @@ class SessionsController < ApplicationController
   private
 
   def save_url
-    if params[:previous_url].present?
-      session[:forwarding_url] = params[:previous_url]
-    end
+    session[:forwarding_url] = params[:previous_url] if params[:previous_url].present?
   end
 end

@@ -32,11 +32,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:success] = 'Profile updated'
-      redirect_to @user
+    if params[:user][:coin] # user nap coin --> TODO
+      @user.update(coin: params[:user][:coin].to_i + @user.coin)
+      @payment = Payment.create(user_id: @user.id.to_s, status: 2, coin: params[:user][:coin])
+      redirect_back_or @user
     else
-      render 'edit'
+      if @user.update(user_params)
+        flash[:success] = 'Profile updated'
+        redirect_to @user
+      else
+        render 'edit'
+      end
     end
   end
 

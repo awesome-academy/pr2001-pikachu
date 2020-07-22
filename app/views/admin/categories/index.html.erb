@@ -3,6 +3,7 @@
   <div id="categories"><%= render @categories %></div>
   <%= link_to 'Create a new Category', new_admin_category_path %>
 </div>
+
 <h2>New Category</h2>
 <%= form_for [:admin, @category], remote: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
