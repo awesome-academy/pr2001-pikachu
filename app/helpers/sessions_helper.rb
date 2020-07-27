@@ -64,4 +64,17 @@ module SessionsHelper
   def current_user?(user)
     user && user == current_user
   end
+
+  def check_coin(booking_tour)
+    if params[:bill].to_i > current_user.coin
+      store_location
+      flash[:danger] = "Not enough coin!
+         Please nap coin! You need to nap at least #{params[:bill].to_i - current_user.coin} ! "
+      redirect_to current_user
+    else
+      current_user.update(coin: current_user.coin - params[:bill].to_i)
+      booking_tour.pay!
+      redirect_to tour_booking_tour_path(booking_tour.tour_detail.tour, booking_tour)
+    end
+  end
 end

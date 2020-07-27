@@ -1,0 +1,8 @@
+<div id="nap_coin">
+  <%= form_for user, method: :patch do |f|%>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :coin %>
+    <%= f.number_field :coin, min: '1' %>
+    <%= f.submit "Confirm", class: "btn btn-success"%>
+  <%end%>
+</div>
