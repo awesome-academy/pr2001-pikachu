@@ -13,3 +13,21 @@
     <% end %>
   </span>
 </li>
+
+<div class="col-md-8">
+  <% if review.comments.any? %>
+    <h3>Comments (<%= review.comments.count %>)</h3>
+    <ol class="comments">
+      <%= render review.comments %>
+    </ol>
+  <% end %>
+</div>
+
+<% if logged_in? %>
+      <section class="comment_form">
+        <%= render 'shared/comment_form', review: review, comment: @comment %>
+      </section>
+    </aside>
+  <% else %>
+  <% end %>
+</div>
