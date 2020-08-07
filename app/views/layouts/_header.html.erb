@@ -1,28 +1,113 @@
-<header class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container">
-    <li class="navbar-brand"><%= link_to "PIKACHU APP", root_path, id: "logo" %></li>
-  <nav class= "navbar navbar-light">
-    <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item"><%= link_to "Home", root_path %></li>
-      <li class="nav-item"><%= link_to "Help", help_path %></li>
-      <% if logged_in? %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Account <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to "Profile", current_user %></li>
-          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-          <li class="divider"></li>
-          <li><%= link_to "Log out", logout_path, method: :delete %></li>
-        </ul>
+<header>
+  <div class="top-head">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <div id="pikachu-small" style="overflow: hidden;">
+        <%= link_to image_tag("pikachu.png", alt: "Rails logo", class: "navbar-brand", id: "pikachu-big"), root_path %>
+      </div>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Acount
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Profile", current_user, class: "dropdown-item" %>
+            <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <% if current_user.admin %>
+              <%= link_to "Back to Adminpage", admin_path, class: "dropdown-item" %>
+            <% end %>
+            <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign up", signup_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log in", login_path, class: "nav-link" %>
+        </li>
+        <% end %>
+        <li class="nav-item">
+          <div class="nav-link">
+            <i class="fa fa-phone"></i>
+            19001009
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link">
+            <i class="fa fa-envelope"></i>
+            pikachu@pr2001.com
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-head">
+    <div class="logo">
+      <%= link_to image_tag("tour.png", alt: "Rails logo", class: "mx-auto d-block"), root_path %>
+    </div>
+    <ul class="nav justify-content-center">
+      <li lass="nav-item">
+        <div class="dropdown">
+          <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+            Our Company
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </div>
       </li>
-      <% else %>
-      <li class="nav-item"><%= link_to "Sign up", signup_path %></li>
-      <li class="nav-item"><%= link_to "Log in", login_path %></li>
-      <% end %>
-      <li class="nav-item">Phone: 123456789</li>
-      <li class="nav-item">Email: pikachu@gmail.com</li>
-    </ul>
-  </nav>
+      <li lass="nav-item">
+        <div class="dropdown">
+          <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+            Categories
+          </button>
+          <div class="dropdown-menu">
+            <% @categories.each do |category| %>
+              <%= link_to "#{category.name}", category_tours_path(category),
+                class: "dropdown-item" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <li lass="nav-item">
+        <div class="dropdown">
+          <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+            More
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </div> 
+      </li>
+    </ul> 
+  </div>
+
+  <div class="head-info">
+    <div class="wrap">
+      Vietnam Tour Booking provides many land tours and cruise tours in the most popular destinations of Vietnam, Laos and Cambodia.
+    </div>  
   </div>
 </header>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#pikachu-small").hover(function(){
+      $("#pikachu-big").toggleClass("zoom")
+    })
+  })
+</script>
+
+<style>
+  .zoom {
+    transform: scale(1.2);}
+</style>

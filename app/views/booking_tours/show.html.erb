@@ -1,51 +1,55 @@
-<h2>Information About Your Booking</h2>
-<table>
-  <tr>
-    <th>Your Name:</th>
-    <td><%= current_user.name%></td>
-  </tr>
-  <tr>
-    <th>Your Email:</th>
-    <td><%= current_user.email%></td>
-  </tr>
-  <tr>
-    <th>Tour Name:</th>
-    <td><%= @tour.name%></td>
-  </tr>
-  <tr>
-    <th>Time:</th>
-    <td>From <%= @booking_tour.tour_detail.departure_time %> to <%= @booking_tour.tour_detail.return_time %></td>
-  </tr>
-  <tr>
-    <th>Bill Total($):</th>
+<div class="container">
+  <h2>Information About Your Booking</h2>
+  <div style="margin-left: 200px;">
+    <table>
+      <tr>
+        <th>Your Name:</th>
+        <td><%= current_user.name%></td>
+      </tr>
+      <tr>
+        <th>Your Email:</th>
+        <td><%= current_user.email%></td>
+      </tr>
+      <tr>
+        <th>Tour Name:</th>
+        <td><%= @tour.name%></td>
+      </tr>
+      <tr>
+        <th>Time:</th>
+        <td>From <%= @booking_tour.tour_detail.departure_time %> to <%= @booking_tour.tour_detail.return_time %></td>
+      </tr>
+      <tr>
+        <th>Bill Total($):</th>
+        <% if @booking_tour.unpay? %>
+          <td><%= @booking_tour.price_total %></td>
+        <% else %>
+          <td><%= @booking_tour.price_total %> -*-*-*-*-*- You have paid -*-*-*-*-*- </td> 
+        <% end %>
+      </tr> 
+      <tr>
+        <th>Booking Time:</th>
+        <td><%= @booking_tour.created_at %></td>
+      </tr>
+    </table>
+
     <% if @booking_tour.unpay? %>
-      <td><%= @booking_tour.price_total %></td>
-    <% else %>
-      <td><%= @booking_tour.price_total %> -*-*-*-*-*- You have paid -*-*-*-*-*- </td> 
+      <%= form_for :booking_tour, url: tour_booking_tours_path do |f| %>
+        <%= hidden_field_tag :bill, @booking_tour.price_total %>
+        <%= hidden_field_tag :booking_tour_id, @booking_tour.id %>
+        <%= hidden_field_tag :previous_url, request.url %>
+        <%= f.submit "Payment by coin", class: "btn btn-success" %>
+      <% end %>
     <% end %>
-  </tr> 
-  <tr>
-    <th>Booking Time:</th>
-    <td><%= @booking_tour.created_at %></td>
-  </tr>
-</table>
 
-<% if @booking_tour.unpay? %>
-  <%= form_for :booking_tour, url: tour_booking_tours_path do |f| %>
-    <%= hidden_field_tag :bill, @booking_tour.price_total %>
-    <%= hidden_field_tag :booking_tour_id, @booking_tour.id %>
-    <%= hidden_field_tag :previous_url, request.url %>
-    <%= f.submit "Payment by coin", class: "btn btn-success" %>
-  <% end %>
-<% end %>
-
-<% if @booking_tour.book? %>
-  <%= form_for :booking_tour, method: :patch do |f| %>
-    <%= hidden_field_tag :bill, @booking_tour.price_total %>
-    <%= hidden_field_tag :booking_tour_id, @booking_tour.id %>
-    <%= hidden_field_tag :tour_id, @tour.id %>
-    <%= f.submit "cancel", data: { confirm: "Your sure? 
-        Please reading cancellation policy carefully before choosing!
-        Press 'ok' to cancel!" }, class: "btn btn-danger" %>
-  <% end %>
-<% end %>
+    <% if @booking_tour.book? %>
+      <%= form_for :booking_tour, method: :patch do |f| %>
+        <%= hidden_field_tag :bill, @booking_tour.price_total %>
+        <%= hidden_field_tag :booking_tour_id, @booking_tour.id %>
+        <%= hidden_field_tag :tour_id, @tour.id %>
+        <%= f.submit "cancel", data: { confirm: "Your sure? 
+            Please reading cancellation policy carefully before choosing!
+            Press 'ok' to cancel!" }, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

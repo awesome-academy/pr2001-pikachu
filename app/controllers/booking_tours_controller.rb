@@ -19,8 +19,6 @@ class BookingToursController < ApplicationController
       @booking_tour.price_total = params[:booking_tour][:quantity].to_i *
                                   @tour.price * (1 - @tour.coupon / 100.to_f)
       if @booking_tour.save
-        @payment = Payment.create(user_id: current_user.id.to_s, status: 1,
-                                  coin: @booking_tour.price_total.to_i.to_s, tour_id: @tour.id)
         flash[:success] = 'Your booking is successful!'
         redirect_to tour_booking_tour_path(@tour, @booking_tour)
       else
@@ -41,6 +39,7 @@ class BookingToursController < ApplicationController
     @tour = Tour.find(params[:tour_id])
     check_to_cancel(@booking_tour, @tour) if @booking_tour.pay?
     @booking_tour.cancel!
+    @booking_tour.unpay!
     flash[:success] = 'Cancel successful!'
     redirect_to category_tour_path(@tour.category, @tour)
   end
@@ -64,7 +63,7 @@ class BookingToursController < ApplicationController
         0
       end
     current_user.update(coin: current_user.coin + paid_coin) if paid_coin > 0
-    @payment = Payment.create(user_id: current_user.id.to_s, status: 0,
-                              coin: paid_coin, tour_id: tour.id)
+    Payment.cancel.create(user_id: current_user.id.to_s,
+                   coin: paid_coin, tour_id: tour.id)
   end
 end

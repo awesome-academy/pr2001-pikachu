@@ -1,8 +1,25 @@
 <footer class="footer">
-	<nav>
-		<ul>
-			<li><%= link_to "About",'#' %></li>
-			<li><%= link_to "Contact", '#' %></li>
-		</ul>
-	</nav>
+	<div class="foot_info">
+    <div class="wrap">
+      <div class="foot_menu">
+        <ul class="nav">
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Why book with us</a></li>
+          <li><a href="#">Travel Guides</a></li>
+          <li><a href="#">Our Partners</a></li>
+          <li class="follow_us">Follow us on</li>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+      </ul>
+      </div>
+      <div class="foot_address">
+        <div class="flogo">
+          <%= link_to image_tag("footer.png", alt: "Rails logo", class: "mx-auto d-block"), root_path %>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

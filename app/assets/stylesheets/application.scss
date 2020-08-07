@@ -11,5 +11,313 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require_self
  */
  @import "bootstrap";
+
+ /* mixins, variables, etc. */
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
+ /*universal*/
+ h1, h2, h3 {
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+ }
+ .container {
+  margin-bottom: 100px;
+ }
+ .pagination {
+  display: inline-block;
+  margin-bottom: 20px;
+ }
+ .pagination > li {
+  display: inline;}
+
+ /*header*/
+
+.top-head {
+  width: 100vw;
+  position: fixed;
+  z-index: 4; 
+ .navbar {
+    margin: 0;
+    padding: 0;
+    .navbar-brand {
+      height: 50px;
+      padding: 0;
+      padding-left: 10px;
+    }
+    .nav-item {
+      padding-right: 20px;
+      .nav-link{
+        color: black;
+        &:hover {
+          color: #1fb9a3;
+        }
+        i{
+          color: #1fb9a3;
+        }
+      }
+    }
+  }
+}
+
+.top-head .dropdown-item:hover {
+    color: #1fb9a3;
+  }
+ 
+.main-head {
+  padding-top: 50px;
+ .logo {
+    height: 200px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  button {
+    margin-right: 30px;
+    &:hover {
+      color: #1fb9a3;
+    }
+  }
+  .dropdown-item:hover {
+    color: #1fb9a3;
+  }
+}
+
+ .head-info{
+    background: #1fb9a3;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+ }
+
+#pikachu:hover {
+  .main-head img {
+    transform: scale(1.2);
+  }
+}
+
+ /*footer*/
+ .foot_info{
+    padding: 30px 0 0;
+    background: #222534;
+ }
+
+ .footer .wrap{
+    width: calc(100% - 30px);
+    max-width: 1185px;
+    margin: 0 auto;
+ }
+ .foot_menu{
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+    padding: 20px 0;
+ }
+ .footer .nav li{
+    margin-right: 20px;
+ }
+
+ .footer .nav li a{
+      color: white;
+  }
+ .footer .follow_us{
+    color: white;
+    margin-left: 200px;
+ }
+
+/*search*/
+.background{
+  height: 330px;
+  background-image: url('vietnam.jpg');
+  background-size: 1287px 330px;
+}
+.form_search{
+  text-align: center;
+  padding-top: 100px;
+  input {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 10px; 
+  }
+  select {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 10px;
+  }
+}
+.title{
+  font-size: 3rem;
+  letter-spacing: .6px;
+  color: #333333;
+  padding-top: 70px;
+}
+.welcome{
+    background: #1fb9a3;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+    margin-top: 0;
+}
+#btn-search{
+  background: #1fb9a3;
+  
+  border: #1fb9a3;
+  color: white;
+  &:hover {
+    background: #00000036;
+  }
+}
+
+
+/* show-tour*/
+.tour_name{
+  padding-top: 30px;
+  font-size: 3rem;
+  letter-spacing: .6px;
+  color: #333333;
+}
+.description_tour{
+  padding-top: 15px;
+}
+.img-thumbnail{
+  height: 250px;
+  width: 350px;
+}
+.card-title{
+  margin-top: 0px;
+  a{
+  color: black;
+  }
+}
+.card-text{
+  margin-bottom: 0;
+}
+.card-body .btn{
+  margin-left: 150px;
+}
+.col-sm-4{
+  margin-bottom: 25px;
+}
+
+.reviews {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+    a {
+      color: #385898;
+      font-weight: 600;
+    }
+  }
+  .content {
+    display: block;
+    margin-left: 30px;
+    color: black;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: gray;
+    display: block;
+    margin-left: 60px;
+    .row {
+      width: 330px;
+      text-align: center
+    }
+  }
+}
+
+
+/*theme_admin*/
+
+
+.admin_page {
+  li {
+    height: 30px;
+    padding-left: 20px;
+    letter-spacing: 0.5px;
+    color: #d0d3d4;
+    &:hover{
+    background-color: #6c757d;
+    }
+  }
+  a {
+    display: block;
+    height: 30px;
+    width: 216.833px;
+    color: #d0d3d4; 
+  }
+  h4{
+    letter-spacing: 0.5px;
+    color: #d0d3d4;
+    text-align: center;
+    padding-top: 15px;
+    margin-bottom: 20
+  }
+  .col-sm-2 {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-right: 0;
+    padding-left: 0;
+    background-color: #343a40;
+    z-index: 4;
+  }
+  .about_category {
+    display: none;
+    padding-left: 50px;
+  }
+}
+
+#manager_categories, #booking, #payment, #users {
+  padding-left: 35px;
+}
+
+
+/*home*/
+
+#frame {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: auto;
+  background: #00000036;
+  width: 700px;
+  height: 65px;
+}
+
+/*home_admin*/
+
+.main-home-admin {
+  .row {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    .col-sm-5 {
+      background-color: #e9ecef;
+      border-radius: 16px;
+      h4 {
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/admin', to: 'admin/static_pages#home_admin'
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
 
     resources :tour_details, except: %i[index show]
     resources :users, only: %i[index destroy]
+    resources :payments, only: :index
+    resources :booking_tours, only: :index
 
     resources :tours, only: [] do
       resources :images, only: %i[new index create destroy]

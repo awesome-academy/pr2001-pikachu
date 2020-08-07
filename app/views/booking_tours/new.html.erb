@@ -1,34 +1,35 @@
 <% provide(:title, 'bookingtour') %>
+<div class="container">
+  <h1>Booking Tour</h1>
+  <% c = @tour.seats - @tour_detail.booking_tours&.select{|b| b.book?}.sum{|x| x.quantity}%>
 
-<h1>Booking Tour</h1>
-<% c = @tour.seats - @tour_detail.booking_tours&.sum{|x| x.quantity}%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tour Name</th>
+        <th>Departure Time</th>
+        <th>Return Time</th>
+        <th>Avaliable Seat(s)</th>
+        <th>Price($US)</th>            
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @tour.name %></td>
+        <td><%= @tour_detail.departure_time %></td>
+        <td><%= @tour_detail.return_time %></td>
+        <td><%= c %></td>
+        <td><%= @tour.price %></td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Tour Name</th>
-      <th>Departure Time</th>
-      <th>Return Time</th>
-      <th>Avaliable Seat(s)</th>
-      <th>Price($US)</th>            
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @tour.name %></td>
-      <td><%= @tour_detail.departure_time %></td>
-      <td><%= @tour_detail.return_time %></td>
-      <td><%= c %></td>
-      <td><%= @tour.price %></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= form_for([@tour,@booking_tour]) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= f.hidden_field :tour_detail_id, value: @tour_detail.id %>
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity, min: '1', max: "#{c}" %>
-  <%= f.submit "Booking", class: "btn btn-primary" %>
-<% end %>
+  <%= form_for([@tour,@booking_tour]) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :tour_detail_id, value: @tour_detail.id %>
+    <%= f.label :quantity, class: "font-weight-bolder" %>
+    <%= f.number_field :quantity, min: '1', max: "#{c}" %>
+    <%= f.submit "Booking", class: "btn btn-primary" %>
+  <% end %>
+</div>
  

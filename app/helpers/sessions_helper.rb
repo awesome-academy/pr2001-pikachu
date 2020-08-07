@@ -74,6 +74,8 @@ module SessionsHelper
     else
       current_user.update(coin: current_user.coin - params[:bill].to_i)
       booking_tour.pay!
+      Payment.book.create(user_id: current_user.id.to_s, coin: booking_tour.price_total.to_i.to_s,
+             tour_id: booking_tour.tour_detail.tour.id)
       redirect_to tour_booking_tour_path(booking_tour.tour_detail.tour, booking_tour)
     end
   end

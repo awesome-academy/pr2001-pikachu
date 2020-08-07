@@ -1,96 +1,99 @@
-<h2><%= @tour.name %></h2>
- 
-<div id="demo" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <% @images.count.times do |n| %>
-    <li data-target="#demo" data-slide-to="<%=n+1%>" class="<%= n == 0 ? 'active' : '' %>"></li>
-    <%end%>
-  </ul>
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <%= render @images, tour: @tour %>
-  </div>
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-
-<div><strong>Description:</strong> <%= @tour.description %></div>
-<div><strong>Price($):</strong> <%= @tour.price %></div>
-<div><strong>Coupon(%):</strong> <%= @tour.coupon %></div>
-<div id="rate_average"><strong>Rate Average:</strong>
-  <% if @tour.ratings.count > 0%>
-    <%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %>
-  <%else%>
-    Have no rating
-  <%end%>
-</div>
-
-<div>
-  <% if current_user&&current_user.ratings.pluck(:tour_id).include?(@tour.id) %>
-    <% c = current_user.ratings.select{|x| x if x.tour_id == @tour.id} %>
-    <div><strong>Your Rating: <%= c[0].rate %></strong></div>
-  <% elsif current_user %>
-    <%= render 'ratings/rating_form'%>
-  <% else %>
-    <div><strong>Your Rating: <%= link_to "Please login to rating this tour!", login_path(previous_url: request.url) %></strong></div>
-  <% end %>
-</div>
-
-<div><strong>You will have a lot of choices about departure time - return time:</strong></div>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>STT</th>
-      <th>Departure Time</th>
-      <th>Return Time</th>
-      <th>Available Seat(s)</th>
-      <th>Your choice</th>
-    </tr>
-  </thead>
-  <body>
-    <% @tour_details.each_with_index do |tour_detail,i| %>
-      <tr>
-        <td><%=i+1%></td> 
-        <td><%= tour_detail.departure_time %></td>
-        <td><%= tour_detail.return_time %></td>
-        <td><%= @tour.seats - tour_detail.booking_tours&.select{|b| b.booking_status == "book"}.sum{|x| x.quantity} %></td>
-
-        <% if current_user %>
-        <% booking = current_user.booking_tours&.select{|x| x if x.tour_detail_id == tour_detail.id} %>
-        <% end %>  
-              
-        <% if current_user && booking[-1]&.book? %>
-          <td><%= link_to "See your booking", tour_booking_tour_path(@tour, booking[-1]), class: "btn btn-success" %></td>
-        <%else%>
-          <td><%= link_to "Booking", new_tour_booking_tour_path(@tour, tour_detail_id: tour_detail.id), class: "btn btn-primary"%></td>
-        <%end%>
-      </tr>
-    <% end %>
-  </body>
-</table>
-  <div class="col-md-8">
-    <% if @tour.reviews.any? %>
-      <h3>Reviews (<%= @reviews.count %>)</h3>
-    <ol class="reviews">
-      <%= render @reviews %>
-    </ol>
-    <%= will_paginate @reviews %>
-    <% end %>
+<div class="container">
+  <h2 class="tour_name"><%= @tour.name %></h2> 
+  <div id="demo" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <% @images.count.times do |n| %>
+      <li data-target="#demo" data-slide-to="<%=n+1%>" class="<%= n == 0 ? 'active' : '' %>"></li>
+      <%end%>
+    </ul>
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <%= render @images, tour: @tour %>
+    </div>
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
   </div>
 
-  <% if logged_in? %>
-    <aside class="col-md-4">    
-      <section class="review_form">
-        <%= render 'shared/review_form', tour: @tour, review: @review %>
-      </section>
-    </aside>
-  <% else %>
-  <% end %>
+  <div class="description_tour">
+    <div><strong>Description:</strong> <%= @tour.description %></div>
+    <div><strong>Price($):</strong> <%= @tour.price %></div>
+    <div><strong>Coupon(%):</strong> <%= @tour.coupon %></div>
+    <div id="rate_average"><strong>Rate Average:</strong>
+      <% if @tour.ratings.count > 0 %>
+        <%= (@tour.ratings.sum{|x| x.rate})/(@tour.ratings.count).to_f %>
+      <% else %>
+        Have no rating
+      <% end %>
+    </div>
+
+    <div>
+      <% if current_user&&current_user.ratings.pluck(:tour_id).include?(@tour.id) %>
+        <% c = current_user.ratings.select{|x| x if x.tour_id == @tour.id} %>
+        <div><strong>Your Rating: <%= c[0].rate %></strong></div>
+      <% elsif current_user %>
+        <%= render 'ratings/rating_form'%>
+      <% else %>
+        <div><strong>Your Rating: <%= link_to "Please login to rating this tour!", login_path(previous_url: request.url) %></strong></div>
+      <% end %>
+    </div>
+
+    <div><strong>You will have a lot of choices about departure time - return time:</strong></div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Departure Time</th>
+          <th>Return Time</th>
+          <th>Available Seat(s)</th>
+          <th>Your choice</th>
+        </tr>
+      </thead>
+      <body>
+        <% @tour_details.each_with_index do |tour_detail,i| %>
+          <tr>
+            <td><%=i+1%></td> 
+            <td><%= tour_detail.departure_time %></td>
+            <td><%= tour_detail.return_time %></td>
+            <td><%= @tour.seats - tour_detail.booking_tours&.select {|b| b.book?}.sum {|x| x.quantity} %></td>
+
+            <% if current_user %>
+            <% booking = current_user.booking_tours&.select{|x| x if x.tour_detail_id == tour_detail.id} %>
+            <% end %>  
+                  
+            <% if current_user && booking[-1]&.book? %>
+              <td><%= link_to "See your booking", tour_booking_tour_path(@tour, booking[-1]), class: "btn btn-success" %></td>
+            <%else%>
+              <td><%= link_to "Booking", new_tour_booking_tour_path(@tour, tour_detail_id: tour_detail.id), class: "btn btn-primary"%></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </body>
+    </table>
+  </div>
+  
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-4">
+      <% if logged_in? %>
+        <section class="review_form" style="margin-top: 60px">
+          <%= render 'shared/review_form', tour: @tour, review: @review %>
+        </section>
+    <% end %>
+    </div>
+    <div class="col-md-8">
+      <% if @tour.reviews.any? %>
+        <h4>Reviews (<%= @reviews.count %>)</h4>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+      <% end %>
+    </div>
+  </div>
 </div>

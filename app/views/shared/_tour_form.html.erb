@@ -1,22 +1,22 @@
 <%= form_for([:admin, @category, @tour]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :name %>
+  <%= f.label :name, class: "font-weight-bolder" %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :description %>
+  <%= f.label :description, class: "font-weight-bolder" %>
   <%= f.text_area :description, class: 'form-control' %>
 
-  <%= f.label :price %>
+  <%= f.label :price, class: "font-weight-bolder" %>
   <%= f.text_field :price, class: 'form-control' %>
 
-  <%= f.label :coupon %>
+  <%= f.label :coupon, class: "font-weight-bolder" %>
   <%= f.text_field :coupon, class: 'form-control' %>
 
-  <%= f.label :seats %>
+  <%= f.label :seats, class: "font-weight-bolder" %>
   <%= f.text_field :seats, class: 'form-control' %>
 
-  Add images
+  <strong>Add images</strong>
   <% 5.times do |i| %>
     <%= f.fields_for :images, @tour.images.new do |ff| %>
       <%= ff.file_field :link %>
@@ -24,4 +24,4 @@
   <% end %>
 
   <%= f.submit "Confirm", class: "btn btn-primary" %>
-<% end %>  
+<% end %>

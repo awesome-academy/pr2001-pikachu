@@ -1,10 +1,25 @@
+<section class="background">
+  <div class="form_search">
+    <div id="frame">
+      <%= form_tag search_tours_path, method: :get do %>
+        <%= text_field_tag :name, params[:name], placeholder: "Name of Tour" %>
+        <%= select_tag :sort_by_price, options_for_select([['Increase of price','ASC'],['Decrease of price','DESC']]), class: "dropdown" %>
+        <%= select_tag :category_id, options_for_select(@categories.map{|category| ["#{category.name}","#{category.id}"]}) %>
+        <%= button_tag(type: "submit", class: "btn btn-light", id: "btn-search") do %>
+          <i class="fa fa-search"> Search </i>
+        <% end %>
+      <%end%>
+    </div>
+  </div>  
+</section>
+<div class="welcome">
+  Vietnam Tour Booking provides many land tours and cruise tours in the most popular destinations of Vietnam. For over 11 years of experience, Vietnam Tour Booking understands your concern and the value of your vacation. No matter what your goal is the culture, the sight, or adventure. We are here to help you create your own unique Vietnam tour. "Xin chào and welcome to Vietnam!" Browse bellow to find the best deals for your great vacation. 
+</div>
 <div class="container">
-  <%= form_tag search_tours_path, method: :get do %>
-    <%= text_field_tag :name, params[:name] %>
-    <%= select_tag :sort_by_created_at, options_for_select([['Decrease','ASC'],['Increase','DASC']])%>
-    <%= submit_tag 'Search' %>
-  <%end%>     
+  <h2 class="title"><strong>Our Tours</strong></h2> 
+  <%= will_paginate @tours %>
   <div class="row">
     <%= render @tours %>
   </div>
+  <%= will_paginate @tours %>
 </div>

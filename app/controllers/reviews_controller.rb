@@ -32,5 +32,5 @@ class ReviewsController < ApplicationController
   def correct_user
     @review = current_user.reviews.find_by(id: params[:id])
     redirect_to root_url if @review.nil?
-end
+  end
 end

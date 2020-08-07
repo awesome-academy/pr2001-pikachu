@@ -284,7 +284,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.5.0)
   bootstrap-sass (= 3.4.1)
-  bootstrap-will_paginate (= 1.0.0)
+  bootstrap-will_paginate
   byebug
   capybara (>= 2.15)
   carrierwave
@@ -305,7 +305,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  will_paginate (= 3.1.8)
+  will_paginate
 
 RUBY VERSION
    ruby 2.6.2p47
