@@ -86,6 +86,7 @@
   </div>
 
   <% if logged_in? %>
+    <aside class="col-md-4">    
       <section class="review_form">
         <%= render 'shared/review_form', tour: @tour, review: @review %>
       </section>

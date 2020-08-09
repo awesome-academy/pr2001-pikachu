@@ -12,11 +12,10 @@
                                         data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-</li>
 
-<div class="col-md-8">
+  <div class="col-md-8">
   <% if review.comments.any? %>
-    <h3>Comments (<%= review.comments.count %>)</h3>
+    <h4>Comments (<%= review.comments.count %>)</h4>
     <ol class="comments">
       <%= render review.comments %>
     </ol>
@@ -30,4 +29,4 @@
     </aside>
   <% else %>
   <% end %>
-</div>
+</li>
