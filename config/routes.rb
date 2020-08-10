@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   resources :tours do
     resources :reviews, only: %i[create destroy]
   end
+
+  resources :comments, only: %i[create destroy]
 end
