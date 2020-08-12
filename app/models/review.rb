@@ -12,8 +12,8 @@
 #  updated_at :datetime         not null
 #
 class Review < ApplicationRecord
-  has_many :likes
-  has_many :comments
+  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :tour
   mount_uploader :picture, ImageUploader

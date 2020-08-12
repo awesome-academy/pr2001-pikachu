@@ -48,5 +48,10 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create destroy]
   end
 
-  resources :comments, only: %i[create destroy]
+  resources :comments, only: %i[create destroy] do
+    resources :likes, only: [:create, :destroy]
+  end
+  resources :reviews, only: [] do
+    resources :likes, only: [:create, :destroy]
+  end
 end

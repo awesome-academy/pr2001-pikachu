@@ -11,7 +11,13 @@
                                         data: { confirm: "You sure?" } %>
     <% end %>
     <div class="row">
-      <div class="col">Like</div>
+      <div class="col">
+        <% if @reviews_likes.pluck(:likeable_id).include?(review.id) %>
+            <%= render "users/unlike_review_form", review: review %>
+        <% else %>
+            <%= render "users/like_review_form", review: review %>
+        <% end %>
+      </div>
       <div class="col">Comment</div>
     </div>
   </span>

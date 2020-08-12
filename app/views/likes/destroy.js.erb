@@ -1,0 +1,5 @@
+<% if params[:review_id] %>
+  $("#unlike_review_<%= @likeable.id %>").html("<%= j(render("users/like_review_form", review: @likeable))%>");
+<% else %>
+  $("#unlike_comment_<%= @likeable.id %>").html("<%= j(render("users/like_comment_form", comment: @likeable))%>");
+<% end %>

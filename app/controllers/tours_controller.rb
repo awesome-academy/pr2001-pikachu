@@ -14,5 +14,7 @@ class ToursController < ApplicationController
     @reviews = @tour.reviews.paginate(page: params[:page])
     @review = Review.new
     @comment = Comment.new
+    @reviews_likes = current_user.likes.where(likeable_type: "Review")
+    @comments_likes = current_user.likes.where(likeable_type: "Comment")
   end
 end
