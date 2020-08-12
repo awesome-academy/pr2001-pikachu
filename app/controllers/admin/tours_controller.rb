@@ -5,7 +5,7 @@ class Admin::ToursController < Admin::BaseController
   before_action :set_tour, except: %i[index new create]
 
   def index
-    @tours = @category.tours
+    @tours = @category.tours.paginate(page: params[:page], per_page: 5)
   end
 
   def show

@@ -24,10 +24,10 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bcrypt', '3.1.13'
-gem 'bootstrap-will_paginate', '1.0.0'
+gem 'bootstrap-will_paginate'
 gem 'jbuilder', '~> 2.7'
 gem 'rubocop'
-gem 'will_paginate', '3.1.8'
+gem 'will_paginate'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

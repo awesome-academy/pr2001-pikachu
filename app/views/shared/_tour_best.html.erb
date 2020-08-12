@@ -1,0 +1,14 @@
+<tr>
+  <th><%= tour.id %></th>
+  <td><%= tour.name %></td>
+  <td><%= tour.category.name %></td>
+  <td><%= count_tour %></td>
+  <td><%= coin %></td>
+  <td>
+    <% if tour.ratings.count > 0 %>
+      <%= (tour.ratings.sum{|x| x.rate})/(tour.ratings.count).to_f %>
+    <% else %>
+      Have no rating
+    <% end %>
+  </td>
+</tr>

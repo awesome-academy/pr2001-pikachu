@@ -1,6 +1,5 @@
 <li id="review-<%= review.id %>">
-  <%= link_to review.tour.images.first, review.tour if review.tour.images.first %>
-  <span class="tour"><%= link_to review.tour.name, review.tour %></span>
+  <span class="user"><%= link_to review.user.name, review.user %></span>
   <span class="content">
     <%= review.content %>
     <%= image_tag(review.picture_url, alt: 'hi', class:"img-thumbnail") if review.picture_url %>
@@ -8,9 +7,13 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
     <% if current_user?(review.user) %>
-        <%= link_to "delete", tour_review_path(review.tour, review), method: :delete,
+        <%= link_to "Delete", tour_review_path(review.tour, review), method: :delete,
                                         data: { confirm: "You sure?" } %>
     <% end %>
+    <div class="row">
+      <div class="col">Like</div>
+      <div class="col">Comment</div>
+    </div>
   </span>
 
   <div class="col-md-8">

@@ -1,3 +1,4 @@
+<h6>Please leave your review below</h6>
 <%= form_for([tour,review]) do |f| %>
   <%= render 'shared/error_messages', object: review %>
   <%= hidden_field_tag :tour_id, @review.tour_id %>
@@ -7,5 +8,5 @@
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture">
       <%= f.file_field :picture, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
-    </span>
+  </span>
 <% end %>

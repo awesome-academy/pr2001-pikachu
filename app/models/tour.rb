@@ -29,7 +29,6 @@ class Tour < ApplicationRecord
     where("name like '%#{name}%'")
   }
 
-  scope :order_by_created_at, lambda { |sort_key|
-    order(created_at: sort_key)
-  }
+  scope :order_by_price, ->(sort_key) { order(price: sort_key) }
+  scope :find_by_category, ->(category_id) { where category_id: category_id }
 end

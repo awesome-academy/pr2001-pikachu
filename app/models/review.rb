@@ -19,5 +19,5 @@ class Review < ApplicationRecord
   mount_uploader :picture, ImageUploader
   validates :user_id, presence: true
   validates :tour_id, presence: true
-  validates :content, presence: true, length: { maximum: 500 }
+  validates :content, presence: true, length: { maximum: 2000 }
 end

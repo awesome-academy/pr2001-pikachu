@@ -2,7 +2,7 @@
 
 class StaticPagesController < ApplicationController
   def home
-    @tours = Tour.all
+    @tours = Tour.paginate(page: params[:page], per_page: 9)
   end
 
   def help; end

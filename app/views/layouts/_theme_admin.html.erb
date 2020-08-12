@@ -1,0 +1,33 @@
+<div class="admin_page">
+  <div class="col-sm-2">
+    <h4>Admin</h4>
+    <ul class="nav flex-column">
+      <li>
+        <%= link_to "/admin"  do %>
+          <i class='fa fa-home'> Home </i>
+        <% end %>
+      </li>
+      <li id="manager_all">Manager</li>
+      <li id="manager_categories">Categories</li>
+      <li class="about_category"><%= link_to "List of Categories", admin_categories_path %></li>
+      <% @categories.each do |category| %>
+        <li class="about_category"><%= link_to category.name, admin_category_tours_path(category, category.tours) %></li>
+      <% end %>
+      <li id="booking"><%= link_to "Booking", admin_booking_tours_path %></li>
+      <li id="payment"><%= link_to "Payment", admin_payments_path %></li>
+      <li id="users"><%= link_to "Users", admin_users_path %></li>
+      <li><%= link_to "Back to Website", root_path %></li>
+      <li><%= link_to "Log out", logout_path, method: :delete %></li>
+    </ul>  
+  </div>
+</div>
+
+
+
+<script>
+  $(document).ready(function(){
+    $("#manager_categories").click(function(){
+      $(".about_category").toggle();
+    });
+  });
+</script>

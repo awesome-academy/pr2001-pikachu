@@ -1,11 +1,11 @@
 <tr>
-  <td><%= tour_counter + 1 %></td>
-  <td><%= tour.name %></td> 
+  <td><%= tour.id %></td>
+  <td><%= link_to tour.name, admin_category_tour_path(tour.category, tour) %></td> 
   <td><%= tour.description %></td>
   <td><%= tour.price %></td>
   <td><%= tour.coupon %></td>
   <td><%= tour.seats %></td>
-  <td><%= link_to 'Show Time',  admin_category_tour_path(@category, tour) %></td>
+  <td><%= link_to 'Show Images',  admin_tour_images_path(tour, tour.images) %></td>
   <td><%= link_to 'Edit', edit_admin_category_tour_path(@category,tour) %></td>
   <td><%= link_to "Delete", admin_category_tour_path(@category, tour), method: :delete,
     data: { confirm: "You sure?" } %></td>

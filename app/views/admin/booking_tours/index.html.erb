@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <div class="container">
+      <h1>Bookings</h1>
+      <h6>Note: Book Paid-Green / Book Unpaid-Yeallow / Cancel-Red</h6>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tour</th>
+            <th>Status</th>
+            <th>Pay/Unpay</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @booking_tours.each do |booking_tour| %>
+          <tr class =  
+            <% if booking_tour.cancel? %>
+              <%= "table-danger" %>
+            <% elsif booking_tour.book? && booking_tour.pay? %>
+              <%= "table-success" %>
+            <% else %>
+              <%= "table-warning" %>
+            <% end %>
+          >
+            <td><%= booking_tour.id %></td>
+            <td><%= booking_tour.tour_detail.tour.name %></td>
+            <td><%= booking_tour.booking_status %></td>
+            <td><%= booking_tour.payment_status %></td>
+            <td><%= booking_tour.created_at.strftime("%H:%M %Y/%m/%d")%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @users %>
+    </div>
+  </div>
+</div>

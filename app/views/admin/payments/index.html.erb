@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <div class="container">
+      <h1>Payments</h1>
+      <h6>Note: Nap-Blue / Cancel-Red / Book-Green</h6>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Items</th>
+            <th>Tour</th>
+            <th>Coin</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @payments.each do |payment| %>
+          <tr class =  
+            <% if payment.cancel? %>
+              <%= "table-danger" %>
+            <% elsif payment.book? %>
+              <%= "table-success" %>
+            <% else %>
+              <%= "table-primary" %>
+            <% end %>
+          >
+            <td><%= payment.id %></td>
+            <td><%= payment.status %></td>
+            <td><%= Tour.find_by(id: payment.tour_id)&.name %></td>
+            <td><%= payment.coin%></td>
+            <td><%= payment.created_at.strftime("%H:%M %Y/%m/%d") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @payments %>
+    </div>
+  </div>
+</div>
+  
