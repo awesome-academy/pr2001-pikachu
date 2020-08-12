@@ -1,0 +1,6 @@
+<div id="like_comment_<%= comment.id %>">
+<%= form_for [comment, Like.new], remote: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Like" %>
+<% end %>
+</div>

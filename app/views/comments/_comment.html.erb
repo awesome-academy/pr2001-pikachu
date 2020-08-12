@@ -8,5 +8,15 @@
         <%= link_to "delete", comment_path(comment), method: :delete,
                                         data: { confirm: "You sure?" } %>
     <% end %>
+    <div class="row">
+      <div class="col">
+        <% if @comments_likes.pluck(:likeable_id).include?(comment.id) %>
+            <%= render "users/unlike_comment_form", comment: comment %>
+        <% else %>
+            <%= render "users/like_comment_form", comment: comment %>
+        <% end %>
+      </div>
+      <div class="col">Comment</div>
+    </div>
 	</span>
 </li>

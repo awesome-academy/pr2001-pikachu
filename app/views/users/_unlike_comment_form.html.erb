@@ -1,0 +1,3 @@
+<div id="unlike_comment_<%= comment.id %>">
+<%= link_to "Unlike", comment_like_path(comment, comment.likes.where(user_id: current_user.id)[0]), method: :delete, remote: true %>
+</div>
